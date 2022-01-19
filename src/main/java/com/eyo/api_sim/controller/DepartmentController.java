@@ -2,6 +2,8 @@ package com.eyo.api_sim.controller;
 
 import com.eyo.api_sim.entity.Department;
 import com.eyo.api_sim.service.DepartmentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,14 +16,17 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
+    private final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
+
     @PostMapping("/department")
     public Department saveDepartment(@Valid @RequestBody Department department) {
-
+        LOGGER.info("Saving a department");
         return departmentService.saveDepartment(department);
     }
 
     @GetMapping("/departments")
     public List<Department> getDepartmentList() {
+        LOGGER.info("Fetching all departments");
         return departmentService.getDepartmentList();
     }
 

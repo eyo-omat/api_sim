@@ -2,11 +2,13 @@ package com.eyo.api_sim.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Getter
@@ -21,6 +23,9 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long departmentId;
+
+    @NotBlank(message = "Department Name is missing")
+    @Length(max = 5, min = 3)
     private String departmentName;
     private String departmentAddress;
     private String departmentCode;

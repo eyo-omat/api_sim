@@ -1,6 +1,7 @@
 package com.eyo.api_sim.service;
 
 import com.eyo.api_sim.entity.Department;
+import com.eyo.api_sim.exception.DepartmentNotFoundException;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface DepartmentService {
 
     List<Department> getDepartmentList();
 
-    Department getDepartmentById(Long departmentId);
+    Department getDepartmentById(Long departmentId) throws DepartmentNotFoundException;
 
     void deleteDepartmentById(Long departmentId);
 

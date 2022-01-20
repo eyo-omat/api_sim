@@ -1,6 +1,7 @@
 package com.eyo.api_sim.controller;
 
 import com.eyo.api_sim.entity.Department;
+import com.eyo.api_sim.exception.DepartmentNotFoundException;
 import com.eyo.api_sim.service.DepartmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments/{departmentId}")
-    public Department getDepartmentByID(@PathVariable Long departmentId) {
+    public Department getDepartmentByID(@PathVariable Long departmentId) throws DepartmentNotFoundException {
         return departmentService.getDepartmentById(departmentId);
     }
 

@@ -1,6 +1,7 @@
 package com.eyo.api_sim.service;
 
 import com.eyo.api_sim.entity.Department;
+import com.eyo.api_sim.exception.DepartmentNotFoundException;
 import com.eyo.api_sim.repository.DepartmentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -27,8 +29,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department getDepartmentById(Long departmentId) {
-        return departmentRepository.findById(departmentId).get();
+    public Department getDepartmentById(Long departmentId) throws DepartmentNotFoundException {
+        Optional<Department> departmentOptional = departmentRepository.findById(departmentId);
+        if (departmentOptional.isEmpty()) {
+            throw new DepartmentNotFoundException("Department with ID " + departmentId + " not available");
+        }
+        return departmentOptional.get();
     }
 
     @Override

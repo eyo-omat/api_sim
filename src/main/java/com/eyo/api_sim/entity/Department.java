@@ -11,9 +11,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
-@Getter
-@Setter
-@ToString
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
